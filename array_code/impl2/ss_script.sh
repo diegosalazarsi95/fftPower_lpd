@@ -20,7 +20,7 @@
 
 ## Set the paths to the project and the tools
 #impl
-IMPL="impl1"
+IMPL="impl2"
 # c codes
 CCODE="/home/dbp/lpd_env/fftPower_lpd/array_code/${IMPL}/c_code"
 # object file generated using simple scalar
