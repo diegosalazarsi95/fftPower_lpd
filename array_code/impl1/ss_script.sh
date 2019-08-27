@@ -22,7 +22,7 @@
 # working area
 WA_P="/home/dbp/lpd_env/project"
 # c codes
-C_P="/home/dbp/lpd_env/project/src"
+CCODE="/home/dbp/lpd_env/fftPower_lpd/array_code/impl1/c_code"
 # object file generated using simple scalar
 OBJS_P="/home/dbp/lpd_env/project/simplescalar_objs"
 # results of wattch
@@ -33,9 +33,7 @@ SS_P="/home/dbp/lpd_env/installers/SimpleScalar"
 WT_P="/home/dbp/lpd_env/installers/Wattch"
 
 
-cd ${C_P}/
-
-for test in `ls *c | sed 's/.c//g'`; do
+for test in `ls $CCODE/*c | sed 's/.c//g'`; do
 	echo "---------------------------------------------"
 
 	echo "***** Simple Scalar *****"
@@ -45,7 +43,7 @@ for test in `ls *c | sed 's/.c//g'`; do
 	
 	
 	cd ${OBJS_P}
-	${SS_P}/build/bin/sslittle-na-sstrix-gcc -o $test ${C_P}/${test}.c #-Bdynamic
+	${SS_P}/build/bin/sslittle-na-sstrix-gcc -o $test ${test}.c #-Bdynamic
 
 	echo "***** Wattch *****"
 	echo "Populating the software to evaluate the performace of: " ${test}
