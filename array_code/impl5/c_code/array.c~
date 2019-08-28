@@ -3,7 +3,7 @@
 int main()
 {
   // size of the array
-  int size =128;
+  int size =64;
 
   //make arrays
   float a[size][size], b[size][size], result[size][size];
