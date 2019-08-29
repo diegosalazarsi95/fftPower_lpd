@@ -22,15 +22,18 @@
 #impl
 IMPL="impl3"
 # c codes
-CCODE="/home/dbp/lpd_env/fftPower_lpd/array_code/${IMPL}/c_code"
+CCODE="/home/dbp/lpd_env/fftPower_lpd/fft_code/${IMPL}/c_code"
 # object file generated using simple scalar
-SSOBJS="/home/dbp/lpd_env/fftPower_lpd/array_code/${IMPL}/simplescalar_obj"
+SSOBJS="/home/dbp/lpd_env/fftPower_lpd/fft_code/${IMPL}/simplescalar_obj"
 #watch results
-WATCHRR="/home/dbp/lpd_env/fftPower_lpd/array_code/${IMPL}/watch_results"
+WATCHRR="/home/dbp/lpd_env/fftPower_lpd/fft_code/${IMPL}/watch_results"
 # simple scalar cross compiler
 SS_P="/home/dbp/lpd_env/installers/SimpleScalar"
 # wattch tool
 WT_P="/home/dbp/lpd_env/installers/Wattch"
+
+rm -rf ${SSOBJS}/*
+rm -rf ${WATCHRR}/*
 
 pushd .
 cd ${CCODE}
