@@ -32,6 +32,9 @@ SS_P="/home/dbp/lpd_env/installers/SimpleScalar"
 # wattch tool
 WT_P="/home/dbp/lpd_env/installers/Wattch"
 
+rm -rf ${SSOBJS}/*
+rm -rf ${WATCHRR}/*
+
 pushd .
 cd ${CCODE}
 for test in `ls *c | sed 's/.c//g'`; do

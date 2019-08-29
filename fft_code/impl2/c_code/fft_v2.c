@@ -1,7 +1,35 @@
-#include "fft.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define PI 3.1415926535897932384626434
+
+typedef struct complex_t {
+    double re;
+    double im;
+} complex;
+
+
+complex conv_from_polar(double r, double radians) {
+    complex result;
+    result.re = r * cos(radians);
+    result.im = r * sin(radians);
+    return result;
+}
+
+complex add(complex left, complex right) {
+    complex result;
+    result.re = left.re + right.re;
+    result.im = left.im + right.im;
+    return result;
+}
+
+complex multiply(complex left, complex right) {
+    complex result;
+    result.re = left.re*right.re - left.im*right.im;
+    result.im = left.re*right.im + left.im*right.re;
+    return result;
+}
 
 complex* DFT_naive(complex* x, int N) {
     complex* X = (complex*) malloc(sizeof(struct complex_t) * N);
@@ -25,13 +53,15 @@ complex* FFT_CooleyTukey(complex* input, int N, int N1, int N2) {
     int k1, k2;
 
     /* Allocate columnwise matrix */
-    complex** columns = (complex**) malloc(sizeof(struct complex_t*) * N1);
+    complex **columns = (complex**) malloc(sizeof(struct complex_t*) * N1);
+    complex **rows = (complex**) malloc(sizeof(struct complex_t*) * N2);
+    complex* output = (complex*) malloc(sizeof(struct complex_t) * N);
+
     for(k1 = 0; k1 < N1; k1++) {
         columns[k1] = (complex*) malloc(sizeof(struct complex_t) * N2);
     }
     
     /* Allocate rowwise matrix */
-    complex** rows = (complex**) malloc(sizeof(struct complex_t*) * N2);
     for(k2 = 0; k2 < N2; k2++) {
         rows[k2] = (complex*) malloc(sizeof(struct complex_t) * N1);
     }
@@ -61,7 +91,6 @@ complex* FFT_CooleyTukey(complex* input, int N, int N1, int N2) {
     }
     
     /* Flatten into single output */
-    complex* output = (complex*) malloc(sizeof(struct complex_t) * N);
     for(k1 = 0; k1 < N1; k1++) {
         for (k2 = 0; k2 < N2; k2++) {
             output[N2*k1 + k2] = rows[k2][k1];
@@ -78,4 +107,22 @@ complex* FFT_CooleyTukey(complex* input, int N, int N1, int N2) {
     free(columns);
     free(rows);
     return output;
+}
+
+
+int main(void) {
+    complex * input1 = (complex*) malloc(sizeof(struct complex_t) * 30);
+    complex * result1;
+    
+    /* Init inputs */
+    int i;
+    for (i=0; i < 30; i++) {
+        input1[i].re = (double) i;
+        input1[i].im = 0.0;
+    }
+    
+    /* Do FFT */
+    result1 = FFT_CooleyTukey(input1, 30, 6, 5);
+    
+    return 0;
 }

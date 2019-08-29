@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define PI 3.1415926535897932384626434
 
@@ -53,13 +54,15 @@ complex* FFT_GoodThomas(complex* input, int N, int N1, int N2) {
     int k1, k2, z;
 
     /* Allocate columnwise matrix */
-    complex** columns = (complex**) malloc(sizeof(struct complex_t*) * N1);
+    complex **columns = (complex**) malloc(sizeof(struct complex_t*) * N1);
+    complex **rows = (complex**) malloc(sizeof(struct complex_t*) * N2);
+    complex *output = (complex*) malloc(sizeof(struct complex_t) * N);
+
     for(k1 = 0; k1 < N1; k1++) {
         columns[k1] = (complex*) malloc(sizeof(struct complex_t) * N2);
     }
     
     /* Allocate rowwise matrix */
-    complex** rows = (complex**) malloc(sizeof(struct complex_t*) * N2);
     for(k2 = 0; k2 < N2; k2++) {
         rows[k2] = (complex*) malloc(sizeof(struct complex_t) * N1);
     }
@@ -89,7 +92,6 @@ complex* FFT_GoodThomas(complex* input, int N, int N1, int N2) {
     }
     
     /* Flatten into single output (Using chinese remainder theorem) */
-    complex* output = (complex*) malloc(sizeof(struct complex_t) * N);
     
     for(k1 = 0; k1 < N1; k1++) {
         for (k2 = 0; k2 < N2; k2++) {
