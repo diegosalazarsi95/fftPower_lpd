@@ -111,18 +111,21 @@ complex* FFT_CooleyTukey(complex* input, int N, int N1, int N2) {
 
 
 int main(void) {
-    complex * input1 = (complex*) malloc(sizeof(struct complex_t) * 30);
+    int N = 32;
+    int N1 = 4;
+    int N2 = 8;
+    complex * input1 = (complex*) malloc(sizeof(struct complex_t) * N);
     complex * result1;
     
     /* Init inputs */
     int i;
-    for (i=0; i < 30; i++) {
+    for (i=0; i < N; i++) {
         input1[i].re = (double) i;
         input1[i].im = 0.0;
     }
     
     /* Do FFT */
-    result1 = FFT_CooleyTukey(input1, 30, 6, 5);
+    result1 = FFT_CooleyTukey(input1, N, N1, N2);
     
     return 0;
 }

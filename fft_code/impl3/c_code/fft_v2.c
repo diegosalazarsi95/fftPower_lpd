@@ -96,8 +96,8 @@ int main(void) {
     /* Init inputs */
     int i;
     for (i=0; i < N; i++) {
-        input1[i].r = (double) i;
-        input1[i].i = 0.0;
+        input1[i].re = (double) i;
+        input1[i].im = 0.0;
     }
     
     /* Do FFT */
