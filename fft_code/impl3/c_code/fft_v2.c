@@ -89,7 +89,7 @@ complex* FFT_simple(complex* x, int N /* must be a power of 2 */) {
 }
 
 int main(void) {
-    int N = 32;
+    int N = 1024;
     complex * input1 = (complex*) malloc(sizeof(struct complex_t) * N);
     complex * result1;
     

@@ -111,9 +111,9 @@ complex* FFT_CooleyTukey(complex* input, int N, int N1, int N2) {
 
 
 int main(void) {
-    int N = 32;
-    int N1 = 4;
-    int N2 = 8;
+    int N = 1024;
+    int N1 = 32;
+    int N2 = 32;
     complex * input1 = (complex*) malloc(sizeof(struct complex_t) * N);
     complex * result1;
     

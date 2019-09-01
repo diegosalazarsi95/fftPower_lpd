@@ -33,7 +33,7 @@ SS_P="/home/dbp/lpd_env/installers/SimpleScalar"
 WT_P="/home/dbp/lpd_env/installers/Wattch"
 
 rm -rf ${SSOBJS}/*
-rm -rf ${WATCHRR}/*
+#rm -rf ${WATCHRR}/*
 
 pushd .
 cd ${CCODE}
